@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8"/>
         <title>TIC-TAC-TOE</title>
+
         <style>
         body {
             align-items: center;
@@ -14,6 +15,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             background: #e81764;
+            border-radius: 5px;
         }
 
         .buttongame{
@@ -22,13 +24,33 @@
             border: 0px;
             height: 30px;
             width: 30px;
+            font-size: 40px;
         }
         </style>
     </head>
     <body>
+<h3>JOGO DA VELHA</h3>
+<div id="game"></div>
+
         <script>
-          const game = document.queryselector('#game')
+            let jogadas = {
+                '','','',
+                '','','',
+                '','','',
+            };
+
+            const game = document.querySelector('#game');
+
+            function clickDoJogador(index) {
+            alert('oi');
+          }
+
+            game.innerHTML = '';
+
+            for (let i = 0; i < 9; i++) {
+            game.innerHTML += `<button class="buttonGame" onclick="clickDoJogador(${1})">` +i + `</button>`
+          }
+
         </script>
-      
     </body>
 </html>
