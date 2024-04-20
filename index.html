@@ -54,34 +54,36 @@
                 '','','',
                 '','','',
         ];
+
+        //-------------DECLARAÇÕES DE VARIAVEIS-------------------------------------
             let vez = 'X';
-
             const game = document.querySelector('#game');
-
             let label = document.querySelector("label");
 
-            function clickDoJogador(index) {
+        //-------------DECLARAÇÕES DA FUNCAO QUANDO O JOGADOR CLICAR EM UMA CELULA------
+            function clickDoJogador(index) {    
                     
                 if(jogadas[index]=='') {
                 
                     if(vez == 'X') {
                     jogadas[index] = 'X';
                     desenhaBotoes();
-                    vez = 'O';
                     label.innerHTML = "<h3>Vez do jogador >> O</h3>";
                     verificaVencedor();
+                    vez = 'O';
                 }
 
                 else {
                     jogadas[index] = 'O';
                     desenhaBotoes();
-                    vez = 'X';
                     label.innerHTML= "<h3>Vez do jogador >> X</h3>";
                     verificaVencedor();
+                    vez = 'X';
                 }
             }
 
           }
+          //-------------DECLARAÇÕES DESENHA OS BOTOES NA TELA------------------------
           function desenhaBotoes(){
             game.innerHTML = '';
 
@@ -89,7 +91,7 @@
             game.innerHTML += `<button class="buttonGame" onclick="clickDoJogador(${i})">` + jogadas[i] + `</button>`
           }
         }
-
+        //-------------DECLARAÇÕES DA FUNCAO QUE VERIFICA SE A CELULA ESTA VAZIA------
         function verificaCelulas(c1, c2, c3) {
             return (
                     jogadas [c1] != '' &&
@@ -99,7 +101,7 @@
                     jogadas [c2] == jogadas[c3]
             );
         }
-
+        //-------------DECLARAÇÕES DA FUNCAO QUEM FOI O VENCEDOR SE AS CELULAS CONTEM O MESMO CARACTER----
         function verificaVencedor() {
            if(
             verificaCelulas(0,1,2) ||
@@ -115,11 +117,11 @@
             verificaCelulas(2,4,6)
            ) {
            gameover = true;
-           alert('FIM DE JOGO - JOGADOR' +VEZ ' GANHOU');
+           alert('FIM DE JOGO - JOGADOR >> '+vez);
            window.location.reload(true);
            }
         }
-    
+        //-------------DECLARACAO FUNCAO PARA VERIFICAR GANHADOR USANDO APENAS IF-----------------------
         /*function verificaVencedor(){
            if((jogadas[0]&&jogadas[1]&&jogadas[2]==vez)
             ||(jogadas[3]&&jogadas[4]&&jogadas[5]==vez)
@@ -137,7 +139,7 @@
             desenhaBotoes();
             verificavencedor();
         </script>
-        
+
         <button id="restartButton" onclick="window.location.reload(true)">Reiniciar Jogo</button>
 
     </body>
