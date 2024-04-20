@@ -69,6 +69,7 @@
                     desenhaBotoes();
                     vez = 'O';
                     label.innerHTML = "<h3>Vez do jogador >> O</h3>";
+                    verificaVencedor();
                 }
 
                 else {
@@ -76,8 +77,10 @@
                     desenhaBotoes();
                     vez = 'X';
                     label.innerHTML= "<h3>Vez do jogador >> X</h3>";
+                    verificaVencedor();
                 }
             }
+
           }
           function desenhaBotoes(){
             game.innerHTML = '';
@@ -86,7 +89,53 @@
             game.innerHTML += `<button class="buttonGame" onclick="clickDoJogador(${i})">` + jogadas[i] + `</button>`
           }
         }
+
+        function verificaCelulas(c1, c2, c3) {
+            return (
+                    jogadas [c1] != '' &&
+                    jogadas [c2] != '' &&
+                    jogadas [c3] != '' &&
+                    jogadas [c1] == jogadas[c2] &&
+                    jogadas [c2] == jogadas[c3]
+            );
+        }
+
+        function verificaVencedor() {
+           if(
+            verificaCelulas(0,1,2) ||
+            verificaCelulas(3,4,5) ||
+            verificaCelulas(6,7,8) ||
+
+            verificaCelulas(0,3,6) ||
+            verificaCelulas(1,4,7) ||
+            verificaCelulas(2,5,8) ||
+
+            verificaCelulas(0,3,6) ||
+            verificaCelulas(0,4,8) ||
+            verificaCelulas(2,4,6)
+           ) {
+           gameover = true;
+           alert('FIM DE JOGO');
+           window.location.reload(true);
+           }
+        }
+    
+        /*function verificaVencedor(){
+           if((jogadas[0]&&jogadas[1]&&jogadas[2]==vez)
+            ||(jogadas[3]&&jogadas[4]&&jogadas[5]==vez)
+            ||(jogadas[6]&&jogadas[7]&&jogadas[8]==vez)
+            ||(jogadas[0]&&jogadas[3]&&jogadas[6]==vez)
+            ||(jogadas[1]&&jogadas[4]&&jogadas[7]==vez)
+            ||(jogadas[2]&&jogadas[5]&&jogadas[8]==vez)
+            ||(jogadas[0]&&jogadas[3]&&jogadas[6]==vez)
+            ||(jogadas[0]&&jogadas[4]&&jogadas[8]==vez)
+            ||(jogadas[2]&&jogadas[4]&&jogadas[6]==vez))
+            
+            alert("JOGADOR" +vez "GANHOU");
+        }*/
+
             desenhaBotoes();
+            verificavencedor();
         </script>
         
         <button id="restartButton" onclick="window.location.reload(true)">Reiniciar Jogo</button>
