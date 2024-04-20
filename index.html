@@ -4,53 +4,92 @@
     <head>
         <meta charset="UTF-8"/>
         <title>TIC-TAC-TOE</title>
+        <link rel="shortcut icon" type="imagex/png" href="x.ico">
 
         <style>
         body {
             align-items: center;
             flex-direction: column;
+            display:flex;
         }
 
         #game {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            background: #e81764;
+            background: #87555c;
             border-radius: 5px;
         }
 
-        .buttongame{
-            background-color: #87555c;
-            margin: 15px;
+        .buttonGame{
+            background-color: #f1e9bb;
+            margin: 10px;
             border: 0px;
-            height: 30px;
-            width: 30px;
+            height: 100px;
+            width: 100px;
+            color: black;
+            border-radius: 10px;
             font-size: 40px;
         }
+
+        button {
+        padding: 7px;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
         </style>
     </head>
     <body>
-<h3>JOGO DA VELHA</h3>
-<div id="game"></div>
+        <h3>JOGO DA VELHA</h3>
+        
+        <label>
+            <h3>Vez do jogador >> X</h3>
+        </label>
+        
+        <div id="game"></div>
 
         <script>
-            let jogadas = {
+            let jogadas = [
                 '','','',
                 '','','',
                 '','','',
-            };
+        ];
+            let vez = 'X';
 
             const game = document.querySelector('#game');
 
-            function clickDoJogador(index) {
-            alert('oi');
-          }
+            let label = document.querySelector("label");
 
+            function clickDoJogador(index) {
+                    
+                if(jogadas[index]=='') {
+                
+                    if(vez == 'X') {
+                    jogadas[index] = 'X';
+                    desenhaBotoes();
+                    vez = 'O';
+                    label.innerHTML = "<h3>Vez do jogador >> O</h3>";
+                }
+
+                else {
+                    jogadas[index] = 'O';
+                    desenhaBotoes();
+                    vez = 'X';
+                    label.innerHTML= "<h3>Vez do jogador >> X</h3>";
+                }
+            }
+          }
+          function desenhaBotoes(){
             game.innerHTML = '';
 
             for (let i = 0; i < 9; i++) {
-            game.innerHTML += `<button class="buttonGame" onclick="clickDoJogador(${1})">` +i + `</button>`
+            game.innerHTML += `<button class="buttonGame" onclick="clickDoJogador(${i})">` + jogadas[i] + `</button>`
           }
-
+        }
+            desenhaBotoes();
         </script>
+        
+        <button id="restartButton" onclick="window.location.reload(true)">Reiniciar Jogo</button>
+
     </body>
 </html>
