@@ -59,10 +59,14 @@
             let vez = 'X';
             const game = document.querySelector('#game');
             let label = document.querySelector("label");
+            let gameover = false;
+            let turnos = 0;
 
         //-------------DECLARAÇÕES DA FUNCAO QUANDO O JOGADOR CLICAR EM UMA CELULA------
             function clickDoJogador(index) {    
-                    
+
+            if(gameover==false) {
+
                 if(jogadas[index]=='') {
                 
                     if(vez == 'X') {
@@ -81,11 +85,14 @@
                     vez = 'X';
                 }
             }
+        }
 
           }
           //-------------DECLARAÇÕES DESENHA OS BOTOES NA TELA------------------------
           function desenhaBotoes(){
+            
             game.innerHTML = '';
+            turnos++;
 
             for (let i = 0; i < 9; i++) {
             game.innerHTML += `<button class="buttonGame" onclick="clickDoJogador(${i})">` + jogadas[i] + `</button>`
@@ -117,9 +124,13 @@
             verificaCelulas(2,4,6)
            ) {
            gameover = true;
-           alert('FIM DE JOGO - JOGADOR >> '+vez);
-           window.location.reload(true);
+           alert('FIM DE JOGO - VENCEDOR JOGADOR >> '+vez);
+           //window.location.reload(true);
            }
+           else if (turnos==10) {
+                gameover=true;
+                alert('FIM DE JOGO - DEU VELHA');
+            }
         }
         //-------------DECLARACAO FUNCAO PARA VERIFICAR GANHADOR USANDO APENAS IF-----------------------
         /*function verificaVencedor(){
